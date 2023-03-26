@@ -1,0 +1,15 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+
+	<div class="alert alert-success">
+		Bonjour je suis
+		{{ personne.firstname}}
+		{{ personne.name}}
+		et j'ai
+		{{ personne.age}}
+		ans
+	</div>
+{% endblock %}
+
+{% block title %}{% endblock %}
