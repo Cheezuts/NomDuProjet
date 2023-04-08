@@ -24,3 +24,4 @@ use Faker\Generator
 //         $manager->flush();
 //     }
 // }
+;
