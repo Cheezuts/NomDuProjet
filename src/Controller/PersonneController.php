@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('personne')]
+#[Route('/personne', name: 'personne')]
 class PersonneController extends AbstractController
 {
     #[Route('/', name: 'personne.list')]
@@ -18,9 +18,24 @@ class PersonneController extends AbstractController
         $personnes = $repository->findAll();
         return $this->render(view: 'personne/index.html.twig', parameters: ['personnes' => $personnes]);
     }
-    
 
-    #[Route('/add', name: 'app_personne')]
+
+    #[Route('/personne/{id<\d+>}', name: 'personne.detail.html')]
+    public function detail(ManagerRegistry $doctrine, $id): Response
+    {
+        $repository = $doctrine->getRepository(Personne::class);
+        $personne = $repository->find($id);
+        $errorMessage = null;
+        if(!$personne){
+            $errorMessage = "La personne d'id $id n'existe pas";
+        }
+        return $this->render('personne/detail.html.twig', [
+            'personne' => $personne,
+            'errorMessage' => $errorMessage,
+        ]);
+    }
+
+    #[Route('/add', name: 'personne.add')]
     public function addPersonne(ManagerRegistry $doctrine): Response
     {
         // $this->getDoctrine() : Version symfony ( inf ou égal à )  5  

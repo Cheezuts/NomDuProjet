@@ -1,3 +1,7 @@
 controllers:
-    resource: ../src/Controller/
-    type: attribute
+  resource: ../src/Controller/
+  type: attribute
+
+personne_detail:
+  path: "/personne/detail/{id}"
+  controller: App\Controller\PersonneController::detail

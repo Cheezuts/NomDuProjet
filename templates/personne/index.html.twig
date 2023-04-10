@@ -17,7 +17,10 @@
 						Age:
 						{{ personne.age}}
 					</p>
-					<a href="#" class="btn btn-primary">Todo</a>
+					{# <a href="{{ path('personne.detail', {id: personne.id}) }}" class="btn btn-primary">Détails</a> #}
+					<a href="{{ path('personne_detail', { id: personne.id }) }}" class="btn btn-primary">Détails</a>
+
+
 				</div>
 			</div>
 		{% endfor %}

@@ -2,14 +2,27 @@
 
 {% block body %}
 
-	<div class="alert alert-success">
-		Bonjour je suis
-		{{ personne.firstname}}
-		{{ personne.name}}
-		et j'ai
-		{{ personne.age}}
-		ans
-	</div>
+	{% if errorMessage %}
+		<div class="alert alert-danger">{{ errorMessage }}</div>
+	{% endif %}
+
+	{% if personne %}
+		<div class="alert alert-success">
+			{{ personne.firstname}}
+			{{ personne.name}}
+			a
+			{{ personne.age}}
+			ans
+		</div>
+	{% endif %}
+
 {% endblock %}
 
-{% block title %}{% endblock %}
+{% block title %}
+	{% if personne %}
+		{{ personne.firstname }}
+		{{ personne.name }}
+	{% else %}
+		Personne introuvable
+	{% endif %}
+{% endblock %}
